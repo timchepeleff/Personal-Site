@@ -5,7 +5,16 @@ const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
 
 module.exports = {
   siteMetadata: {
-    siteTitleAlt: `Minimal Blog - Gatsby Theme`,
+    // Used for the title template on pages other than the index site
+    siteTitle: `Tim Chepeleff`,
+    // Default title of the page
+    siteTitleAlt: `Tim Chepeleff's Rants and Rambles`,
+    // Can be used for e.g. JSONLD
+    siteHeadline: `Tim Chepeleff's Rants and Rambles`,
+    siteUrl: `https://timchepeleff.com`,
+    siteDescription: `Tim Chepeleff's Rants and Rambles.`,
+    siteLanguage: `en`,
+    author: `@timchep`,
   },
   plugins: [
     {
@@ -16,20 +25,16 @@ module.exports = {
           {
             title: `Blog`,
             slug: `/blog`,
-          },
-          {
-            title: `About`,
-            slug: `/about`,
-          },
+          }
         ],
         externalLinks: [
           {
-            name: `Twitter`,
-            url: `https://twitter.com/lekoarts_de`,
+            name: `GitHub`,
+            url: `https://github.com/timchepeleff`,
           },
           {
-            name: `Homepage`,
-            url: `https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Starter`,
+            name: `LinkedIn`,
+            url: `https://www.linkedin.com/in/timchepeleff/`,
           },
         ],
       },
@@ -43,8 +48,8 @@ module.exports = {
         timeout: 30000,
         web: [
           {
-            name: `IBM Plex Sans`,
-            file: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap`,
+            name: `Courier Prime`,
+            file: `https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap`,
           },
         ],
       },
