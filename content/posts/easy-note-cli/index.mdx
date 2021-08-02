@@ -1,0 +1,32 @@
+---
+title: "Simple CLI tool for taking notes"
+date: 2021-08-02
+slug: "/easy-note-cli"
+---
+
+Coming soon!
+
+```bash
+set_up_notes() {
+ CURRENT_DATE=$1
+ file_name_path=$2
+ if [ ! -f $file_name_path ]; then
+    touch $file_name_path
+    echo "# Notes for $CURRENT_DATE" > $file_name_path
+ fi
+}
+
+today_notes() {
+  CURRENT_DATE=$(date -j "+%Y-%m-%d")
+  file_name_path="$HOME/programming/notes/days/$CURRENT_DATE.md"
+  set_up_notes $CURRENT_DATE $file_name_path
+  vim $file_name_path
+}
+
+yesterday_notes() {
+  CURRENT_DATE=$(date -j -v-1d "+%Y-%m-%d")
+  file_name_path="$HOME/programming/notes/days/$CURRENT_DATE.md"
+  set_up_notes $CURRENT_DATE $file_name_path
+  vim $file_name_path
+}
+```
