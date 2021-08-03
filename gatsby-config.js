@@ -6,7 +6,7 @@ const googleAnalyticsTrackingId = process.env.GOOGLE_ANALYTICS_ID
 module.exports = {
   siteMetadata: {
     // Used for the title template on pages other than the index site
-    siteTitle: `Tim Chepeleff`,
+    siteTitle: `Tim`,
     // Default title of the page
     siteTitleAlt: `Tim Chepeleff's Rants and Rambles`,
     // Can be used for e.g. JSONLD
