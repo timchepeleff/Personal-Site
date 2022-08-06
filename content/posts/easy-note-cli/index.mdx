@@ -1,17 +1,46 @@
 ---
 title: "Simple CLI tool for taking notes"
-date: 2021-02-08
+date: 2021-02-08 ## yyyy-dd-mm
 slug: "/easy-note-cli"
 ---
 
-Coming soon!
+Simple note taking CLI that I have used for the past few years. Barebones -- but does the trick and helps me keep notes in sync across multiple different computers.
 
-Edit: I swear I'll actually flesh this out one day.
+## Steps:
+
+**1) Set up a empty repository via:**
 
 ```bash
+$ mkdir -p ./notes/days
+$ cd notes
+$ echo "export NOTES_DIR=$(pwd)" > ~/.zshrc
+```
+
+**2) Optional: Set up automatic git pushes via Cron**
+
+Open crontab:
+
+```
+$ crontab -e
+```
+
+```
+*/10 * * * * cd $NOTES_DIR && git add . && git commit -am "auto-update" && git push > /dev/null 2>&1
+*/20 * * * * cd $NOTES_DIR && git pull > /dev/null 2>&1
+```
+
+**Update your `.zshrc` with the following functions**
+
+```bash
+# .zshrc
+
+alias today="today_notes"
+alias yesterday="yesterday_notes"
+
 set_up_notes() {
  CURRENT_DATE=$1
  file_name_path=$2
+
  if [ ! -f $file_name_path ]; then
     touch $file_name_path
     echo "# Notes for $CURRENT_DATE" > $file_name_path
@@ -20,15 +49,17 @@ set_up_notes() {
 
 today_notes() {
   CURRENT_DATE=$(date -j "+%Y-%m-%d")
-  file_name_path="$HOME/programming/notes/days/$CURRENT_DATE.md"
+  file_name_path="$NOTES_DIR/$CURRENT_DATE.md"
   set_up_notes $CURRENT_DATE $file_name_path
   vim $file_name_path
 }
 
 yesterday_notes() {
   CURRENT_DATE=$(date -j -v-1d "+%Y-%m-%d")
-  file_name_path="$HOME/programming/notes/days/$CURRENT_DATE.md"
+  file_name_path="$NOTES_DIR/$CURRENT_DATE.md"
   set_up_notes $CURRENT_DATE $file_name_path
   vim $file_name_path
 }
 ```
+
+
